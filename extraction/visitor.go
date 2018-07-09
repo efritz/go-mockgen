@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"go/ast"
 	"go/types"
-	"strings"
 
 	"github.com/efritz/go-mockgen/specs"
 )
@@ -61,7 +60,7 @@ func (v *visitor) visitTypeSpec(typeSpec *ast.TypeSpec) error {
 		Methods: methods,
 	}
 
-	v.specs[title(typeSpec.Name.Name)] = spec
+	v.specs[typeSpec.Name.Name] = spec
 	return nil
 }
 
@@ -97,12 +96,4 @@ func deconstructMethod(signature *types.Signature) *specs.MethodSpec {
 		Results:  results,
 		Variadic: signature.Variadic(),
 	}
-}
-
-func title(s string) string {
-	if s == "" {
-		return s
-	}
-
-	return strings.ToUpper(string(s[0])) + s[1:]
 }
