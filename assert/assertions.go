@@ -64,7 +64,7 @@ func CalledNMatching(t assert.TestingT, mockFn interface{}, n int, assertion Arg
 	if !ok {
 		return false
 	}
-	if matchingCallCount != 0 {
+	if matchingCallCount != n {
 		// TODO - check formatting here
 		return assert.Fail(t, fmt.Sprintf("Expected %T to be called exactly %d times, called %d times", mockFn, n, matchingCallCount), msgAndArgs...)
 	}
