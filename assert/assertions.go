@@ -7,7 +7,7 @@ import (
 )
 
 // TODO - document
-type ArgAssertionFunc func(assert.TestingT, interface{}, ...interface{}) bool
+type ArgAssertionFunc func(assert.TestingT, interface{}) bool
 
 // TODO - document
 func Called(t assert.TestingT, mockFn interface{}, msgAndArgs ...interface{}) bool {
