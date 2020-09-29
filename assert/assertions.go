@@ -23,6 +23,19 @@ func Called(t assert.TestingT, mockFn interface{}, msgAndArgs ...interface{}) bo
 }
 
 // TODO - document
+func NotCalled(t assert.TestingT, mockFn interface{}, msgAndArgs ...interface{}) bool {
+	callCount, ok := callCount(t, mockFn, msgAndArgs...)
+	if !ok {
+		return false
+	}
+	if callCount != 0 {
+		return assert.Fail(t, fmt.Sprintf("Did not expect %T to be called", mockFn), msgAndArgs...)
+	}
+
+	return true
+}
+
+// TODO - document
 func CalledOnce(t assert.TestingT, mockFn interface{}, msgAndArgs ...interface{}) bool {
 	return CalledN(t, mockFn, 1, msgAndArgs...)
 }
@@ -49,6 +62,18 @@ func CalledMatching(t assert.TestingT, mockFn interface{}, assertion ArgAssertio
 	}
 	if matchingCallCount == 0 {
 		return assert.Fail(t, fmt.Sprintf("Expected %T to be called at least once", mockFn), msgAndArgs...)
+	}
+	return true
+}
+
+// TODO - document
+func NotCalledMatching(t assert.TestingT, mockFn interface{}, assertion ArgAssertionFunc, msgAndArgs ...interface{}) bool {
+	matchingCallCount, ok := matchingCallCount(t, mockFn, assertion, msgAndArgs...)
+	if !ok {
+		return false
+	}
+	if matchingCallCount != 0 {
+		return assert.Fail(t, fmt.Sprintf("Did not expect %T to be called", mockFn), msgAndArgs...)
 	}
 	return true
 }
