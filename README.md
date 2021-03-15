@@ -1,3 +1,7 @@
+# Deprecated
+
+This project has moved to https://github.com/derision-test/go-mockgen.
+
 # go-mockgen
 
 [![GoDoc](https://godoc.org/github.com/efritz/go-mockgen?status.svg)](https://godoc.org/github.com/efritz/go-mockgen)
